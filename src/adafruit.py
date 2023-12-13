@@ -12,6 +12,8 @@ ADAFRUIT_KEY = settings.ADAFRUIT_KEY
 FEED_NAME = settings.FEED_NAME
 
 def connect_on_adafruit():
+    """Function to connect on Adafruit IO and return the Client and Feed objects.
+    """
     aio, feed = None, None
     while aio is None:
             try:
@@ -25,6 +27,8 @@ def connect_on_adafruit():
     return aio, feed
 
 def send_data_on_adafruit(aio, feed, data, timestamp):
+    """Function to send data to Adafruit IO.
+    """
     aio.send_data(feed.key, data)
 
     logger.info(f"{FEED_NAME} - {timestamp} :: {data}")

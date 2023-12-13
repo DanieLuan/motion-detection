@@ -14,7 +14,9 @@ from src.adafruit import *
 async def help(update, context):
     await context.bot.send_message(update.effective_chat.id, "Comandos disponíveis:\n/start_detection - Inicia a detecção de movimento.")
     
-async def start_detection(update, context):  
+async def start_detection(update, context):
+    """Initiate the detection of movement on stations F and G in the flow rack.
+    """
     cap = cv2.VideoCapture(0)
     
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -56,6 +58,9 @@ async def start_detection(update, context):
             send_report_time = time.time()
             
 def last_status():
+    """Get the last status from the last 10 minutes and send it.
+    """
+    
     csv = pd.read_csv('data.csv')
     
     if csv['status'].iloc[-1] == 1:
